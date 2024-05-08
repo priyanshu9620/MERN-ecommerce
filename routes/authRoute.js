@@ -26,6 +26,7 @@ router.post("/login", loginController);
 router.post("/forgot-password", forgotPasswordController);
 
 //test routes
+//these three out of which first two are the middlewares and last oneis the controller 
 router.get("/test", requireSignIn, isAdmin, testController);
 
 //protected User route auth
@@ -50,11 +51,6 @@ router.get("/orders", requireSignIn, getOrdersController);
 router.get("/all-orders", requireSignIn, isAdmin, getAllOrdersController);
 
 // order status update
-router.put(
-  "/order-status/:orderId",
-  requireSignIn,
-  isAdmin,
-  orderStatusController
-);
+router.put("/order-status/:orderId",requireSignIn,isAdmin,orderStatusController);
 
 export default router;

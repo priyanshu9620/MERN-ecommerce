@@ -38,6 +38,11 @@ export const registerController = async (req, res) => {
     //register user
     const hashedPassword = await hashPassword(password);
     //save
+    // const user=await new userModel({
+    //   name:name,
+    //   email:email,.....
+    // })
+    // u can also use createone wala mongo funtion 
     const user = await new userModel({
       name,
       email,
@@ -89,6 +94,9 @@ export const loginController = async (req, res) => {
       });
     }
     //token
+    //gerneral syntax:
+    // const token = jwt.sign(payload, secretKey, { expiresIn: '1h' })
+    //inside pay load u must sent something which can uniquely identify it 
     const token = await JWT.sign({ _id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
@@ -103,6 +111,7 @@ export const loginController = async (req, res) => {
         address: user.address,
         role: user.role,
       },
+      //this is important sending out the token
       token,
     });
   } catch (error) {

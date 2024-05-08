@@ -28,7 +28,7 @@ app.use(cors());
 app.use(express.json());
 app.use(morgan("dev"));
 //for deployment 
-app.use(express.static(path.join(__dirname,'./client/build')))
+// app.use(express.static(path.join(__dirname,'./client/build')))
 
 //routes
 app.use("/api/v1/auth", authRoutes);
@@ -36,6 +36,8 @@ app.use("/api/v1/category", categoryRoutes);
 app.use("/api/v1/product", productRoutes);
 
 //rest api
+//note this is a general route jo rehta hi hai welcome ke liye pheli baar khulega
+//iske bina bhi kaam hoskta but ye acha lagne ke liye
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to ecommerce app</h1>");
 });
@@ -50,7 +52,6 @@ const PORT = process.env.PORT || 8080;
 //run listen
 app.listen(PORT, () => {
   console.log(
-    `Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan
-      .white
+    `Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`
   );
 });
